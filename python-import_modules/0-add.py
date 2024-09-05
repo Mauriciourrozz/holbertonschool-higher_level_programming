@@ -2,5 +2,5 @@
 from add_0 import add
 a = 1
 b = 2
-ab = a + b
+ab = add(a, b)
 print("{} + {} = {}".format(a, b, ab))
