@@ -12,6 +12,7 @@ def safe_print_list_integers(my_list=[], x=0):
                     if isinstance(j, int):
                         print("{:d}".format(j), end='')
                         count += 1
-    finally:
+        print()
+    except IndexError:
         print()
     return count
