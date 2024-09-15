@@ -10,7 +10,7 @@ def safe_print_list_integers(my_list=[], x=0):
             elif isinstance(element, list):
                 for j in element:
                     if isinstance(j, int):
-                        print("{:d}".format(j), end='')
+                        break
         print()
     except TypeError:
         print()
