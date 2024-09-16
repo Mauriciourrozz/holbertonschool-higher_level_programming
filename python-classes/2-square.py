@@ -2,6 +2,8 @@
 """
 This file contains a class
 """
+
+
 class Square:
     """
     This class represent a class
