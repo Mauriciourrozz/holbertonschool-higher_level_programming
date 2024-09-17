@@ -9,8 +9,8 @@ class Square:
     This class represent a square
     """
     def __init__(self, size=0, position=(0, 0)):
-        self.size = size
-        self.position = position
+        self.__size = size
+        self.__position = position
 
     def area(self):
         return self.__size * self.__size
@@ -44,6 +44,5 @@ class Square:
     def position(self, value):
         if len(value) != 2:
             raise TypeError("position must be a tuple of 2 positive integers")
-        if not all(isinstance(value, int) and valor >= 0 for valor in value):
+        if all(isinstance(value, int) and num < 0 for num in value):
             raise TypeError("position must be a tuple of 2 positive integers")
-        self.__position = value
