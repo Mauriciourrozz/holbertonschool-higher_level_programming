@@ -52,7 +52,7 @@ class Rectangle:
         if self.__height <= 0 or self.__width <= 0:
             return ""
         r = ""
-        r += ((str(self.print_symbol) * self.width + '\n') * self.height)[:-1]
+        r += ((str(self.print_symbol) * self.width + '\n') * self.height)
         return r[:-1]
 
     def __repr__(self):
