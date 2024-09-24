@@ -3,6 +3,8 @@
 This file contains a class
 """
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+
 class Rectangle(BaseGeometry):
     """
     This class is an inheritance of BaseGeometry
