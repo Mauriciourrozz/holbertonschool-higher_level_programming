@@ -14,6 +14,6 @@ class BaseGeometry:
         self.ancho = ancho
 
     def area(self):
-        if self.alto < 0 or self.ancho < 0:
+        if self.alto <= 0 or self.ancho <= 0:
             raise Exception("area() is not implemented")
         return self.ancho * self.alto
