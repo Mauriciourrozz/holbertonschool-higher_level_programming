@@ -1,7 +1,14 @@
 #!/usr/bin/python3
+"""
+This file contains a class
+"""
 Rectangle = __import__('9-rectangle').Rectangle
 
+
 class Square(Rectangle):
+    """
+    This class represent a Square
+    """
     def __init__(self, size):
         self.integer_validator("size", size)
         self.__size = size
