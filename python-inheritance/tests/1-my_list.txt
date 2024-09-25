@@ -1,0 +1,7 @@
+>>> MyList = __import__('1-my_list').MyList
+
+>>> p = MyList()
+
+>>> p.MyList("str")
+Traceback (most recent call last):
+AttributeError: 'MyList' object has no attribute 'Mylist'
