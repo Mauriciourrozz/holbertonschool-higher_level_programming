@@ -12,7 +12,7 @@ class Shape(ABC):
 class Circle(Shape):
     def __init__(self, radius):
         if radius < 0:
-            radius = abs(radius)
+            radius = abs(radius) #abs toma el valor absoluto de radius y lo pasa a positivo
         self.radius = radius
     def area(self):
         return pi * self.radius ** 2
