@@ -11,7 +11,7 @@ class Shape(ABC):
     
 class Circle(Shape):
     def __init__(self, radius):
-        if self.radius < 0:
+        if radius < 0:
             radius = abs(radius)
         self.radius = radius
     def area(self):
