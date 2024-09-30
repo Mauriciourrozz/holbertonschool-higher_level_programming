@@ -13,4 +13,4 @@ def write_file(filename="", text=""):
     count = 0
     for letra in text:
         count += 1
-    return count
+    return count#tambien pude haber hechoreturn de len(text) y evitaba hacer el bucle y demas
