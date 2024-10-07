@@ -13,12 +13,9 @@ class CustomObject:
         print(f"Is Student: {self.is_student}")
 
     def serialize(self, filename):
-        try:
             with open(filename, 'wb') as file:
                 return pickle.dump(self, file)
-
-        except EOFError:
-            raise ("File not found")
+            raise ("Ran out of input")
             return None
 
     @classmethod
