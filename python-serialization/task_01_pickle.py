@@ -13,16 +13,14 @@ class CustomObject:
         print(f"Is Student: {self.is_student}")
 
     def serialize(self, filename):
-        try:
-            with open(filename, 'wb') as file:
-                return pickle.dump(self, file)
-
-        except EOFError:
-            raise ("Ran out of input")
-            return None
+        with open(filename, 'wb') as file:
+            return pickle.dump(self, file)
 
     @classmethod
     def deserialize(cls, filename):
-        with open(filename, 'rb') as file:
-            l = pickle.load(file)
-            return l
+        try:
+            with open(filename, 'rb') as file:
+                l = pickle.load(file)
+                return l
+        except EOFError:
+            return None
