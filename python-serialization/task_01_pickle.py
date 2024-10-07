@@ -2,7 +2,7 @@
 import pickle
 
 class CustomObject:
-    def __init__(self, name, age, is_student):
+    def __init__(self, name: str, age: int, is_student: bool):
         self.name = name
         self.age = age
         self.is_student = is_student
