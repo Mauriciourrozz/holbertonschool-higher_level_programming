@@ -11,10 +11,10 @@ def fetch_and_print_posts():
             print(i['title'])
 
 def fetch_and_save_posts():
+    list_dic = []
     recuperar = requests.get('https://jsonplaceholder.typicode.com/posts')
     if recuperar.status_code == 200:
         publicacion = recuperar.json()
-        list_dic = []
         for post in publicacion:
             list_dic.append({
                 'id': post['id'],
