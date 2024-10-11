@@ -34,7 +34,7 @@ class My_Handler(http.server.BaseHTTPRequestHandler):
             self.send_response(404)
             self.send_header("Content-type", "text/html")
             self.end_headers()
-            self.wfile.write("404 - Pagina no encontrada".encode('utf-8'))
+            self.wfile.write("404 Not Found".encode('utf-8'))
 
 with http.server.HTTPServer(("", PORT), My_Handler) as httpd:
     print("serving at port", PORT)
