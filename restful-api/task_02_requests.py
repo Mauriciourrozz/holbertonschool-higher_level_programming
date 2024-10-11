@@ -1,6 +1,7 @@
 import requests
 import csv
 
+
 def fetch_and_print_posts():
     recuperar = requests.get('https://jsonplaceholder.typicode.com/posts')
     print(f'Status Code: {recuperar.status_code}')
@@ -9,6 +10,7 @@ def fetch_and_print_posts():
         publicaciones = recuperar.json()
         for i in publicaciones:
             print(i['title'])
+
 
 def fetch_and_save_posts():
     list_dic = []
