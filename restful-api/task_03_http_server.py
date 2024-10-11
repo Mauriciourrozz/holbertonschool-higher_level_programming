@@ -32,9 +32,9 @@ class My_Handler(http.server.BaseHTTPRequestHandler):
 
         else:
             self.send_response(404)
-            self.send_header("Content-type", "text/html")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
-            self.wfile.write("404 Not Found".encode('utf-8'))
+            self.wfile.write(b"Endpoint not found".encode('utf-8'))
 
 with http.server.HTTPServer(("", PORT), My_Handler) as httpd:
     print("serving at port", PORT)
