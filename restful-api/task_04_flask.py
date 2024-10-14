@@ -14,7 +14,7 @@ def home():
 @app.route("/data", methods=["GET"])
 def data():
     name_users = list(usuarios.keys())
-    return name_users
+    return jsonify(name_users)
 
 @app.route("/status")
 def status():
@@ -44,4 +44,4 @@ def add_user():
     return jsonify({"message": "User added", "user": nuevoUsuario}), 201
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
