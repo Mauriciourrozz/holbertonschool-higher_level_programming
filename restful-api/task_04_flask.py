@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 usuarios = {
@@ -27,6 +27,18 @@ def devolver_segun_username(username):
         return jsonify(usuario), 200
     else:
         return jsonify({"error": "User not found"}), 404
+
+@app.route("/add_user", methods=['GET', 'POST'])
+def agregar_usuario():
+    data = request.get_json()
+    if 'username' not in data or not data['username']:
+        return jsonify({"error": "Username is required"}), 400
+    username = data['username']
+    usuarios[username] = {
+    "name": data['name'],
+    "age": data['age'],
+    "city": data['city']
+    }
 
 if __name__ == "__main__":
     app.run()
