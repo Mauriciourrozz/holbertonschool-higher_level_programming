@@ -1,17 +1,13 @@
 from flask import Flask, jsonify, request
 app = Flask(__name__)
 
-usuarios = {
-    "pepe": {"name": "Pepe", "age": 28, "city": "Montevideo"},
-    "fulano": {"name": "Fulano", "age": 30, "city": "Buenos aires"},
-    "mengano": {"name": "Mengano", "age": 25, "city": "Salto"},
-}
+usuarios = {}
 
 @app.route("/")
 def home():
     return "Welcome to the Flask API!"
 
-@app.route("/data", methods=["GET"])
+@app.route("/data")
 def data():
     name_users = list(usuarios.keys())
     return jsonify(name_users)
@@ -32,20 +28,21 @@ def devolver_segun_username(username):
 def add_user():
     data = request.get_json()
     username = data.get('username')
-    if username not in usuarios:
+    nombre = data["name"]
+    edad = data["age"]
+    ciudad = data["city"]
+
+    if not username:
         return jsonify({"error":"Username is required"}), 400
 
-    if 'username' in usuarios:
-        return jsonify({"error":"Username already exist"}), 400
-
-    nuevoUsuario = {
-        'username': data['username'],
-        'name': data.get('name'),
-        'age': data.get('age'),
-        'city': data.get('city')
+    usuarios[username] = {
+        'username': username,
+        'name': nombre,
+        'age': edad,
+        'city': ciudad
     }
-    nuevoUsuario[username] = usuarios
-    return jsonify({"message": "User added", "user": nuevoUsuario}), 201
+    
+    return jsonify({"message": "User added", "user": usuarios[username]}), 201
 
 
 if __name__ == "__main__":
