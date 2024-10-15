@@ -44,7 +44,7 @@ def add_user():
         'age': data.get('age'),
         'city': data.get('city')
     }
-    usuarios[username] = nuevoUsuario
+    nuevoUsuario[username] = usuarios
     return jsonify({"message": "User added", "user": nuevoUsuario}), 201
 
 
