@@ -31,11 +31,12 @@ def devolver_segun_username(username):
 @app.route("/add_user", methods=['POST'])
 def add_user():
     data = request.get_json()
-    if 'username' not in data:
+    username = data.get('username')
+    if username not in usuarios:
         return jsonify({"error":"Username is required"}), 400
 
     if 'username' in usuarios:
-        return jsonify({"error":"Username already exist"})
+        return jsonify({"error":"Username already exist"}), 400
 
     nuevoUsuario = {
         'username': data['username'],
@@ -43,7 +44,7 @@ def add_user():
         'age': data.get('age'),
         'city': data.get('city')
     }
-    usuarios[nuevoUsuario['username']] = nuevoUsuario
+    usuarios[username] = nuevoUsuario
     return jsonify({"message": "User added", "user": nuevoUsuario}), 201
 
 
