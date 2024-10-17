@@ -26,20 +26,19 @@ def home():
 def basic_protected():
     return "Basic Auth: Access Granted", 200
 
-app.config['JWT_SECRET_KEY'] = 'Holamundo'
+app.config['JWT_SECRET_KEY'] = 'super secret password'
 jwt = JWTManager(app)
 
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    username = data['username']
-    password = data['password']
-    usuario = usuarios.get(username)
+    username = data.get['username']
+    password = data.get['password']
 
     if not usuarios or not check_password_hash(usuarios['password'], password):
         return {"error": "access denied"}, 401
 
-    token = create_access_token(identity={'username': username, 'role': usuarios['role']})
+    token = create_access_token(identity={'username': username, 'role': usuarios[username]['role']})
     return {"access_token": token}, 200
 
 
@@ -52,9 +51,9 @@ def jwt_protected():
 @jwt_required()
 def admin_only():
     traer_rol_usuario = get_jwt_identity()
-    if traer_rol_usuario['role'] == 'admin':
-        return "Admin Access: Granted", 200
-    return {"error": "Admin access required"}, 403
+    if traer_rol_usuario['role'] != 'admin':
+        return {"error": "Admin access required"}, 403
+    return "Admin Access: Granted", 200
 
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
