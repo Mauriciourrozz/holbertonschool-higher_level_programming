@@ -34,9 +34,11 @@ def login():
     data = request.get_json()
     username = data['username']
     password = data['password']
+    usuario = usuarios.get(username)
 
     if not usuarios or not check_password_hash(usuarios['password'], password):
         return {"error": "access denied"}, 401
+
     token = create_access_token(identity={'username': username, 'role': usuarios['role']})
     return {"access_token": token}, 200
 
@@ -50,11 +52,9 @@ def jwt_protected():
 @jwt_required()
 def admin_only():
     traer_rol_usuario = get_jwt_identity()
-    rol = traer_rol_usuario['role']
-    if rol == 'admin':
+    if traer_rol_usuario['role'] == 'admin':
         return "Admin Access: Granted", 200
-    else:
-        return {"error": "Admin access required"}, 403
+    return {"error": "Admin access required"}, 403
 
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
