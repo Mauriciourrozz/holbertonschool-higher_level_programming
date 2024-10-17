@@ -24,7 +24,7 @@ def home():
 @app.route('/basic-protected')
 @auth.login_required
 def basic_protected():
-    return "Basic Auth: Access Granted"
+    return "Basic Auth: Access Granted", 200
 
 app.config['JWT_SECRET_KEY'] = 'Holamundo'
 jwt = JWTManager(app)
