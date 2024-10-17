@@ -35,9 +35,9 @@ def login():
     username = data['username']
     password = data['password']
 
-    if not usuarios or not check_password_hash(usuarios[username]['password'], password):
+    if not usuarios or not check_password_hash(usuarios['password'], password):
         return {"error": "access denied"}, 401
-    token = create_access_token(identity={'username': username, 'role': usuarios[username]['role']})
+    token = create_access_token(identity={'username': username, 'role': usuarios['role']})
     return {"access_token": token}, 200
 
 
