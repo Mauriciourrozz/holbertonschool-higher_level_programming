@@ -6,14 +6,14 @@ from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
-usuarios = {
-    "pepe": {"username": "pepe", "password": generate_password_hash("pepito"), "role": "user"},
-    "tito": {"username": "tito", "password": generate_password_hash("titito"), "role": "admin"}
-  }
+users = {
+    "user1": {"username": "user1", "password": generate_password_hash("password"), "role": "user"},
+    "admin1": {"username": "admin1", "password": generate_password_hash("password"), "role": "admin"}
+}
 
 @auth.verify_password
 def verify_password(nombreUsuario, password):
-    if nombreUsuario in usuarios and check_password_hash(usuarios[nombreUsuario]['password'], password):
+    if nombreUsuario in users and check_password_hash(users[nombreUsuario]['password'], password):
         return nombreUsuario
 
 @app.route('/')
@@ -34,10 +34,10 @@ def login():
     username = data.get('username')
     password = data.get('password')
 
-    user = usuarios.get(username)
-    if not usuarios or not check_password_hash(usuarios[username]['password'], password):
+    user = users.get(username)
+    if not users or not check_password_hash(users[username]['password'], password):
         return {"error": "Invalid credentials"}, 401
-    token = create_access_token(identity={'username': username, 'role': usuarios[username]['role']})
+    token = create_access_token(identity={'username': username, 'role': users[username]['role']})
     return {"access_token": token}, 200
 
 @app.route("/jwt-protected")
