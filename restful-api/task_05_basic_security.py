@@ -23,18 +23,20 @@ def home():
 @app.route('/basic-protected')
 @auth.login_required
 def basic_protected():
-    return "Basic Auth: Access Granted"
+    return "Basic Auth: Access Granted", 200
 
-app.config['JWT_SECRET_KEY'] = 'Holamundo'
+app.config['JWT_SECRET_KEY'] = 'Pjpcovo'
 jwt = JWTManager(app)
 
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    username = data['username']
-    password = data['password']
+    username = data.get('username')
+    password = data.get('password')
+
+    user = usuarios.get(username)
     if not usuarios or not check_password_hash(usuarios[username]['password'], password):
-        return {"error": "access denied"}, 401
+        return {"error": "Invalid credentials"}, 401
     token = create_access_token(identity={'username': username, 'role': usuarios[username]['role']})
     return {"access_token": token}, 200
 
