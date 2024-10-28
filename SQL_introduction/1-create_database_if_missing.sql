@@ -1,2 +1,2 @@
 -- Crea una base de datos si esta no existe
-DROP DATABASE IF EXISTS hbtn_0c_0;
+CREATE DATABASE if NOT EXISTS hbtn_0c_0;
