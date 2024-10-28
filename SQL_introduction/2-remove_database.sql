@@ -1,2 +1,2 @@
 -- Elimino una base de datos si existe
-DELETE DATABASES IF EXISTS hbtn_0c_0;
+DELETE DATABASES hbtn_0c_0;
