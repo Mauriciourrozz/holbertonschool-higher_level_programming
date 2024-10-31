@@ -1,4 +1,5 @@
 -- Importar el volcado de la base de datos desde hbtn_0d_tvshows
+USE hbtn_0d_tvshows;
 SELECT genres.name AS genres
 FROM tv_shows
 JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
